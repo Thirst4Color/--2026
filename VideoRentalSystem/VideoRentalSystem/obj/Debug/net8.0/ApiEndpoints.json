@@ -1,0 +1,32 @@
+[
+  {
+    "ContainingType": "VideoRentalSystem.Controllers.TestController",
+    "Method": "GetAvailableMovies",
+    "RelativePath": "api/Test/available",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "VideoRentalSystem.Controllers.TestController",
+    "Method": "HealthCheck",
+    "RelativePath": "api/Test/health",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "VideoRentalSystem.Controllers.TestController",
+    "Method": "GetMovies",
+    "RelativePath": "api/Test/movies",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

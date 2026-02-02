@@ -1,0 +1,229 @@
+﻿@model VideoRentalSystem.Models.ViewModels.MovieDetailsViewModel
+@{
+    ViewData["Title"] = Model.Title + " - Видеопрокат";
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="@Model.CoverImageUrl" class="img-fluid rounded shadow" alt="@Model.Title">
+        </div>
+        <div class="col-md-8">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index", "Catalog")">Каталог</a></li>
+                    <li class="breadcrumb-item active">@Model.Title</li>
+                </ol>
+            </nav>
+
+            <h1>@Model.Title (@Model.Year)</h1>
+
+            @if (Model.Rating.HasValue)
+            {
+                <div class="mb-3">
+                    <span class="badge bg-warning text-dark fs-6">
+                        <i class="bi bi-star-fill"></i> Рейтинг: @Model.Rating.Value.ToString("0.0")/10
+                    </span>
+                </div>
+            }
+
+            <div class="mb-4">
+                <p><strong>Жанр:</strong> @Model.Genre</p>
+                <p><strong>Режиссер:</strong> @Model.Director</p>
+                <p><strong>Продолжительность:</strong> @(Model.Duration.HasValue ? $"{Model.Duration} мин." : "Не указана")</p>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Описание</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">@Model.Description</p>
+                </div>
+            </div>
+
+            <!-- Доступность и форматы -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Доступность для проката</h5>
+                </div>
+                <div class="card-body">
+                    @if (Model.IsAvailable)
+                    {
+                        <div class="alert alert-success">
+                            <h6 class="alert-heading">
+                                <i class="bi bi-check-circle-fill"></i> Фильм доступен для проката!
+                            </h6>
+                            <p>Доступно копий: <strong>@Model.AvailableCopies</strong></p>
+                        </div>
+
+                        <h6>Доступные форматы:</h6>
+                        <div class="row">
+                            @foreach (var mediaItem in Model.MediaItems.Where(mi => mi.IsAvailable))
+                            {
+                                <div class="col-md-6 mb-3">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h6 class="card-title">
+                                                <i class="bi bi-disc"></i> @mediaItem.Format
+                                            </h6>
+                                            <p class="card-text">
+                                                <small class="text-muted">
+                                                    Состояние: @mediaItem.Condition<br>
+                                                    Цена: @mediaItem.DailyPrice.ToString("C") / день
+                                                </small>
+                                            </p>
+                                            <button class="btn btn-success btn-sm" onclick="addToCart(@mediaItem.MediaItemId, '@mediaItem.Format')">
+                                                <i class="bi bi-cart-plus"></i> Арендовать @mediaItem.Format
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning">
+                            <h6 class="alert-heading">
+                                <i class="bi bi-clock"></i> В данный момент все копии выданы
+                            </h6>
+                            @if (Model.NextAvailableDate.HasValue)
+                            {
+                                <p>Ближайшая доступная дата: <strong>@Model.NextAvailableDate.Value.ToString("dd.MM.yyyy")</strong></p>
+                            }
+                            else
+                            {
+                                <p>Дата возврата неизвестна</p>
+                            }
+                            <hr>
+                            <p class="mb-0">
+                                <button class="btn btn-outline-primary btn-sm" onclick="addToWishlist(@Model.MovieId)">
+                                    <i class="bi bi-bell"></i> Уведомить о появлении
+                                </button>
+                            </p>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- Все копии -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Все копии фильма</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Формат</th>
+                                    <th>Состояние</th>
+                                    <th>Статус</th>
+                                    <th>Цена проката</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var mediaItem in Model.MediaItems)
+                                {
+                                    <tr>
+                                        <td>@mediaItem.Format</td>
+                                        <td>
+                                            <span class="badge @GetConditionBadgeClass(mediaItem.Condition)">
+                                                @mediaItem.Condition
+                                            </span>
+                                        </td>
+                                        <td>
+                                            @if (mediaItem.IsAvailable)
+                                            {
+                                                <span class="badge bg-success">Доступна</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-secondary">Выдана</span>
+                                            }
+                                        </td>
+                                        <td>@mediaItem.DailyPrice.ToString("C") / день</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <a href="@Url.Action("Index", "Catalog")" class="btn btn-outline-secondary">
+                    <i class="bi bi-arrow-left"></i> Вернуться в каталог
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function addToCart(mediaItemId, format) {
+            if (confirm(`Добавить ${format} версию в корзину?`)) {
+                fetch('@Url.Action("AddToCart", "Cart")', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        mediaItemId: mediaItemId,
+                        rentalDays: 3 // По умолчанию 3 дня
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Фильм добавлен в корзину!');
+                        window.location.href = '@Url.Action("Index", "Cart")';
+                    } else {
+                        alert('Ошибка: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Произошла ошибка при добавлении в корзину');
+                });
+            }
+        }
+
+        function addToWishlist(movieId) {
+            if (confirm('Хотите получать уведомления, когда этот фильм станет доступен?')) {
+                fetch('@Url.Action("AddToWishlist", "Wishlist")', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ movieId: movieId })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Вы будете уведомлены о появлении фильма!');
+                    } else {
+                        alert('Ошибка: ' + data.message);
+                    }
+                });
+            }
+        }
+    </script>
+}
+
+@functions {
+    public string GetConditionBadgeClass(string condition)
+    {
+        return condition?.ToLower() switch
+        {
+            "excellent" => "bg-success",
+            "good" => "bg-info",
+            "fair" => "bg-warning",
+            "poor" => "bg-danger",
+            _ => "bg-secondary"
+        };
+    }
+}

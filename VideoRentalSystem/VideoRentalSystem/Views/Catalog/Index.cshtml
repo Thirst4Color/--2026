@@ -1,0 +1,175 @@
+﻿@using VideoRentalSystem.Extensions
+@model List<VideoRentalSystem.Models.ViewModels.MovieViewModel>
+@{
+    ViewData["Title"] = "Каталог фильмов - Видеопрокат";
+    Layout = "_Layout";
+}
+
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="display-4">🎬 Каталог фильмов</h1>
+            <p class="lead">Выбирайте фильмы из нашей коллекции и заказывайте онлайн</p>
+        </div>
+    </div>
+
+    <!-- Поиск и фильтры -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-6">
+                    <input type="text" name="search" class="form-control" placeholder="Поиск по названию, режиссеру, жанру..."
+                           value="@ViewData["Search"]" />
+                </div>
+                <div class="col-md-3">
+                    <select name="genre" class="form-select">
+                        <option value="">Все жанры</option>
+                        @foreach (var genre in (List<string>)ViewData["Genres"])
+                        {
+                            <option value="@genre">@genre</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select name="format" class="form-select">
+                        <option value="">Все форматы</option>
+                        @foreach (var format in (List<string>)ViewData["Formats"])
+                        {
+                            <option value="@format">@format</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Найти</button>
+                    <a href="@Url.Action("Index")" class="btn btn-secondary">Сбросить фильтры</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Карточки фильмов -->
+    @if (Model.Any())
+    {
+        <div class="row">
+            @foreach (var movie in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="position-relative">
+                            <img src="@movie.CoverImageUrl" class="card-img-top" alt="@movie.Title"
+                                 style="height: 300px; object-fit: cover;">
+                            @if (movie.Rating.HasValue)
+                            {
+                                <div class="position-absolute top-0 end-0 m-2 bg-warning text-dark rounded-circle p-2"
+                                     style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                                    <strong>@movie.Rating.Value.ToString("0.0")</strong>
+                                </div>
+                            }
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">@movie.Title (@movie.Year)</h5>
+                            <p class="card-text text-muted">@movie.Genre</p>
+                            <p class="card-text flex-grow-1">@movie.Description</p>
+
+                            <!-- Информация о доступности -->
+                            <div class="mt-auto">
+                                @if (movie.IsAvailable)
+                                {
+                                    <div class="alert alert-success p-2 mb-2">
+                                        <small>
+                                            <i class="bi bi-check-circle"></i> Доступно: @movie.AvailableCopies копий
+                                            <br>
+                                            <i class="bi bi-collection"></i> Форматы: @string.Join(", ", movie.AvailableFormats)
+                                        </small>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="alert alert-warning p-2 mb-2">
+                                        <small>
+                                            <i class="bi bi-calendar"></i> Ближайший возврат: @movie.NextAvailableDate.ToShortDateSafe()
+                                                                            }
+                                        </small>
+                                    </div>
+                                }
+
+                                <!-- Цены -->
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <div>
+                                        @foreach (var format in movie.FormatPrices)
+                                        {
+                                            <span class="badge bg-secondary me-1">@format.Key: @format.Value.ToString("C")/день</span>
+                                        }
+                                    </div>
+                                </div>
+
+                                <!-- Кнопки действий -->
+                                <div class="d-grid gap-2">
+                                    <a href="@Url.Action("Details", new { id = movie.MovieId })"
+                                       class="btn btn-outline-primary btn-sm">
+                                        <i class="bi bi-info-circle"></i> Подробнее
+                                    </a>
+                                    @if (movie.IsAvailable)
+                                    {
+                                        <button class="btn btn-success btn-sm" onclick="addToCart(@movie.MovieId)">
+                                            <i class="bi bi-cart-plus"></i> Добавить в корзину
+                                        </button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            <h4 class="alert-heading">Фильмы не найдены</h4>
+            <p>Попробуйте изменить параметры поиска или <a href="@Url.Action("Index")">сбросить фильтры</a>.</p>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        function addToCart(movieId) {
+            fetch('@Url.Action("AddToCart", "Cart")/' + movieId, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Фильм добавлен в корзину!');
+                    updateCartCount();
+                } else {
+                    alert('Ошибка: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Произошла ошибка при добавлении в корзину');
+            });
+        }
+
+        function updateCartCount() {
+            // Здесь можно обновить счетчик корзины
+            console.log('Корзина обновлена');
+        }
+
+        // Автодополнение поиска
+        $(function() {
+            $("#searchInput").autocomplete({
+                source: '@Url.Action("Search", "Catalog")',
+                minLength: 2,
+                select: function(event, ui) {
+                    window.location.href = '@Url.Action("Details", "Catalog")/' + ui.item.id;
+                }
+            });
+        });
+    </script>
+}
