@@ -3,6 +3,22 @@
   "WorkspaceRootPath": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|c:\\users\\markm\\desktop\\up\\application\\videorentalsystem\\videorentalsystem\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|solutionrelative:videorentalsystem\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|c:\\users\\markm\\desktop\\up\\application\\videorentalsystem\\videorentalsystem\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|solutionrelative:videorentalsystem\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|c:\\users\\markm\\desktop\\up\\application\\videorentalsystem\\videorentalsystem\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|solutionrelative:videorentalsystem\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|c:\\users\\markm\\desktop\\up\\application\\videorentalsystem\\videorentalsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|solutionrelative:videorentalsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|c:\\users\\markm\\desktop\\up\\application\\videorentalsystem\\videorentalsystem\\views\\catalog\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|solutionrelative:videorentalsystem\\views\\catalog\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -15,20 +31,12 @@
       "RelativeMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|solutionrelative:videorentalsystem\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|c:\\users\\markm\\desktop\\up\\application\\videorentalsystem\\videorentalsystem\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|solutionrelative:videorentalsystem\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|c:\\users\\markm\\desktop\\up\\application\\videorentalsystem\\videorentalsystem\\extensions\\datetimeextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|solutionrelative:videorentalsystem\\extensions\\datetimeextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|c:\\users\\markm\\desktop\\up\\application\\videorentalsystem\\videorentalsystem\\views\\catalog\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|solutionrelative:videorentalsystem\\views\\catalog\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|c:\\users\\markm\\desktop\\up\\application\\videorentalsystem\\videorentalsystem\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|solutionrelative:videorentalsystem\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|c:\\users\\markm\\desktop\\up\\application\\videorentalsystem\\videorentalsystem\\wwwroot\\_css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
@@ -45,10 +53,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|c:\\users\\markm\\desktop\\up\\application\\videorentalsystem\\videorentalsystem\\controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|solutionrelative:videorentalsystem\\controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|c:\\users\\markm\\desktop\\up\\application\\videorentalsystem\\videorentalsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|solutionrelative:videorentalsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{93F292AA-E926-45F6-8C53-AA6B18D87DD4}|VideoRentalSystem\\VideoRentalSystem.csproj|c:\\users\\markm\\desktop\\up\\application\\videorentalsystem\\videorentalsystem\\models\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -98,7 +102,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -126,46 +130,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CartController.cs",
-              "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Controllers\\CartController.cs",
-              "RelativeDocumentMoniker": "VideoRentalSystem\\Controllers\\CartController.cs",
-              "ToolTip": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Controllers\\CartController.cs",
-              "RelativeToolTip": "VideoRentalSystem\\Controllers\\CartController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-02T09:16:08.171Z",
+              "DocumentIndex": 0,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "VideoRentalSystem\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Properties\\launchSettings.json",
+              "RelativeToolTip": "VideoRentalSystem\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-02-02T10:18:10.419Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DateTimeExtensions.cs",
-              "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Extensions\\DateTimeExtensions.cs",
-              "RelativeDocumentMoniker": "VideoRentalSystem\\Extensions\\DateTimeExtensions.cs",
-              "ToolTip": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Extensions\\DateTimeExtensions.cs",
-              "RelativeToolTip": "VideoRentalSystem\\Extensions\\DateTimeExtensions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-02T09:14:16.149Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "VideoRentalSystem\\Views\\Home\\Index.cshtml",
               "ToolTip": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "VideoRentalSystem\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAwwHsAAAAGAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAACoAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-02-02T09:03:23.57Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Details.cshtml",
               "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Views\\Catalog\\Details.cshtml",
               "RelativeDocumentMoniker": "VideoRentalSystem\\Views\\Catalog\\Details.cshtml",
@@ -173,12 +164,11 @@
               "RelativeToolTip": "VideoRentalSystem\\Views\\Catalog\\Details.cshtml",
               "ViewState": "AgIAAFAAAAAAAAAAAAAqwGIAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-02T08:54:37.083Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-02T08:54:37.083Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "CatalogController.cs",
               "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Controllers\\CatalogController.cs",
               "RelativeDocumentMoniker": "VideoRentalSystem\\Controllers\\CatalogController.cs",
@@ -186,17 +176,16 @@
               "RelativeToolTip": "VideoRentalSystem\\Controllers\\CatalogController.cs",
               "ViewState": "AgIAADUAAAAAAAAAAAAkwEgAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-02T08:52:16.356Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-02T08:52:16.356Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Views\\Catalog\\Index.cshtml",
               "RelativeDocumentMoniker": "VideoRentalSystem\\Views\\Catalog\\Index.cshtml",
-              "ToolTip": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Views\\Catalog\\Index.cshtml*",
-              "RelativeToolTip": "VideoRentalSystem\\Views\\Catalog\\Index.cshtml*",
+              "ToolTip": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Views\\Catalog\\Index.cshtml",
+              "RelativeToolTip": "VideoRentalSystem\\Views\\Catalog\\Index.cshtml",
               "ViewState": "AgIAAEwAAAAAAAAAAAD4v1kAAACGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-02-02T08:53:41.483Z",
@@ -204,13 +193,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Program.cs",
+              "RelativeDocumentMoniker": "VideoRentalSystem\\Program.cs",
+              "ToolTip": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Program.cs*",
+              "RelativeToolTip": "VideoRentalSystem\\Program.cs*",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAwwFsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-29T08:57:17.935Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "VideoRentalSystem\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "VideoRentalSystem\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAwwEQAAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Controllers\\HomeController.cs*",
+              "RelativeToolTip": "VideoRentalSystem\\Controllers\\HomeController.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAowAsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-02-02T08:59:58.2Z",
               "EditorCaption": ""
@@ -218,6 +220,30 @@
             {
               "$type": "Document",
               "DocumentIndex": 7,
+              "Title": "DateTimeExtensions.cs",
+              "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Extensions\\DateTimeExtensions.cs",
+              "RelativeDocumentMoniker": "VideoRentalSystem\\Extensions\\DateTimeExtensions.cs",
+              "ToolTip": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Extensions\\DateTimeExtensions.cs",
+              "RelativeToolTip": "VideoRentalSystem\\Extensions\\DateTimeExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T09:14:16.149Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CartController.cs",
+              "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Controllers\\CartController.cs",
+              "RelativeDocumentMoniker": "VideoRentalSystem\\Controllers\\CartController.cs",
+              "ToolTip": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Controllers\\CartController.cs",
+              "RelativeToolTip": "VideoRentalSystem\\Controllers\\CartController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-02T09:16:08.171Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "site.css",
               "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\wwwroot\\_css\\site.css",
               "RelativeDocumentMoniker": "VideoRentalSystem\\wwwroot\\_css\\site.css",
@@ -225,12 +251,11 @@
               "RelativeToolTip": "VideoRentalSystem\\wwwroot\\_css\\site.css",
               "ViewState": "AgIAAGQAAAAAAAAAAAAgwH0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-02-02T08:59:14.072Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-02T08:59:14.072Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "VideoRentalSystem\\Views\\Shared\\_Layout.cshtml",
@@ -238,12 +263,11 @@
               "RelativeToolTip": "VideoRentalSystem\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAIEAAAAAAAAAAAAwwJkAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-02T08:55:32.994Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-02T08:55:32.994Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "MovieViewModel.cs",
               "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Models\\ViewModels\\MovieViewModel.cs",
               "RelativeDocumentMoniker": "VideoRentalSystem\\Models\\ViewModels\\MovieViewModel.cs",
@@ -251,12 +275,11 @@
               "RelativeToolTip": "VideoRentalSystem\\Models\\ViewModels\\MovieViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-02T08:51:28.478Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-02T08:51:28.478Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "TestController.cs",
               "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Controllers\\TestController.cs",
               "RelativeDocumentMoniker": "VideoRentalSystem\\Controllers\\TestController.cs",
@@ -264,24 +287,11 @@
               "RelativeToolTip": "VideoRentalSystem\\Controllers\\TestController.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAA1wBUAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-31T12:22:26.027Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-31T12:22:26.027Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Program.cs",
-              "RelativeDocumentMoniker": "VideoRentalSystem\\Program.cs",
-              "ToolTip": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Program.cs",
-              "RelativeToolTip": "VideoRentalSystem\\Program.cs",
-              "ViewState": "AgIAAPUAAAAAAAAAAAAkwAwBAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-29T08:57:17.935Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "Supplier.cs",
               "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Models\\Entities\\Supplier.cs",
               "RelativeDocumentMoniker": "VideoRentalSystem\\Models\\Entities\\Supplier.cs",
@@ -293,7 +303,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Models\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "VideoRentalSystem\\Models\\ApplicationDbContext.cs",
@@ -305,7 +315,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "ShoppingCartItem.cs",
               "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Models\\Entities\\ShoppingCartItem.cs",
               "RelativeDocumentMoniker": "VideoRentalSystem\\Models\\Entities\\ShoppingCartItem.cs",
@@ -317,7 +327,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "Wishlist.cs",
               "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Models\\Entities\\Wishlist.cs",
               "RelativeDocumentMoniker": "VideoRentalSystem\\Models\\Entities\\Wishlist.cs",
@@ -329,7 +339,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "OrderDetail.cs",
               "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Models\\Entities\\OrderDetail.cs",
               "RelativeDocumentMoniker": "VideoRentalSystem\\Models\\Entities\\OrderDetail.cs",
@@ -341,7 +351,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "MediaItem.cs",
               "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Models\\Entities\\MediaItem.cs",
               "RelativeDocumentMoniker": "VideoRentalSystem\\Models\\Entities\\MediaItem.cs",
@@ -353,7 +363,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "Order.cs",
               "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Models\\Entities\\Order.cs",
               "RelativeDocumentMoniker": "VideoRentalSystem\\Models\\Entities\\Order.cs",
@@ -365,7 +375,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "Movie.cs",
               "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Models\\Entities\\Movie.cs",
               "RelativeDocumentMoniker": "VideoRentalSystem\\Models\\Entities\\Movie.cs",
@@ -377,7 +387,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "MediaType.cs",
               "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Models\\Entities\\MediaType.cs",
               "RelativeDocumentMoniker": "VideoRentalSystem\\Models\\Entities\\MediaType.cs",
@@ -389,7 +399,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "Customer.cs",
               "DocumentMoniker": "C:\\Users\\markm\\Desktop\\up\\application\\VideoRentalSystem\\VideoRentalSystem\\Models\\Entities\\Customer.cs",
               "RelativeDocumentMoniker": "VideoRentalSystem\\Models\\Entities\\Customer.cs",

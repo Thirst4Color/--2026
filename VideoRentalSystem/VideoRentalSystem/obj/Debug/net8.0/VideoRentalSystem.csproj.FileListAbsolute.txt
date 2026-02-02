@@ -71,3 +71,4 @@ C:\Users\markm\Desktop\up\application\VideoRentalSystem\VideoRentalSystem\obj\De
 C:\Users\markm\Desktop\up\application\VideoRentalSystem\VideoRentalSystem\obj\Debug\net8.0\ref\VideoRentalSystem.dll
 C:\Users\markm\Desktop\up\application\VideoRentalSystem\VideoRentalSystem\obj\Debug\net8.0\VideoRentalSystem.RazorAssemblyInfo.cache
 C:\Users\markm\Desktop\up\application\VideoRentalSystem\VideoRentalSystem\obj\Debug\net8.0\VideoRentalSystem.RazorAssemblyInfo.cs
+C:\Users\markm\Desktop\up\application\VideoRentalSystem\VideoRentalSystem\obj\Debug\net8.0\VideoRentalSystem.sourcelink.json

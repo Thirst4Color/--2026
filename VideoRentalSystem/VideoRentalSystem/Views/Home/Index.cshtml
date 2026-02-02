@@ -1,123 +1,42 @@
 ﻿@{
-    ViewData["Title"] = "Главная - Видеопрокат ФильмоМир";
+    ViewData["Title"] = "Главная страница";
     Layout = "_Layout";
 }
 
-<div class="container mt-4">
-    <!-- Герой-секция -->
-    <div class="p-5 mb-4 bg-light rounded-3">
-        <div class="container-fluid py-5">
-            <h1 class="display-5 fw-bold">Добро пожаловать в ФильмоМир!</h1>
-            <p class="col-md-8 fs-4">Крупнейший видеопрокат с коллекцией более 1500 фильмов на различных носителях. Арендуйте фильмы онлайн и забирайте в нашем офисе.</p>
-            <a class="btn btn-primary btn-lg" href="@Url.Action("Index", "Catalog")">
-                <i class="bi bi-film"></i> Перейти в каталог
-            </a>
-        </div>
+<div class="container mt-5">
+    <div class="jumbotron">
+        <h1 class="display-4">Добро пожаловать в Видеопрокат!</h1>
+        <p class="lead">Это главная страница вашего видеопроката. Здесь будет красивая презентация.</p>
+        <hr class="my-4">
+        <p>Используйте навигационное меню для перехода к разделам сайта.</p>
+        <a class="btn btn-primary btn-lg" href="/Catalog" role="button">Перейти в каталог</a>
+        <a class="btn btn-secondary btn-lg" href="/api-docs" role="button">API Документация</a>
     </div>
 
-    <!-- Статистика -->
-    <div class="row mb-4 text-center">
-        <div class="col-md-4 mb-3">
-            <div class="card bg-primary text-white">
-                <div class="card-body">
-                    <h3>@(((dynamic)ViewData["Stats"]).TotalMovies)</h3>
-                    <p class="card-text">Фильмов в каталоге</p>
-                </div>
-            </div>
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <h3>Быстрые ссылки:</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="/Catalog">📼 Каталог фильмов</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="/Cart">🛒 Корзина</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="/Account/Login">🔐 Вход в систему</a>
+                </li>
+            </ul>
         </div>
-        <div class="col-md-4 mb-3">
-            <div class="card bg-success text-white">
-                <div class="card-body">
-                    <h3>@(((dynamic)ViewData["Stats"]).AvailableCopies)</h3>
-                    <p class="card-text">Доступных копий сейчас</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-3">
-            <div class="card bg-info text-white">
-                <div class="card-body">
-                    <h3>@(((dynamic)ViewData["Stats"]).TotalFormats)</h3>
-                    <p class="card-text">Форматов носителей</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Популярные фильмы -->
-    <div class="row mb-5">
-        <div class="col-12">
-            <h2 class="border-bottom pb-2">
-                <i class="bi bi-fire"></i> Популярные фильмы
-            </h2>
-        </div>
-        @foreach (var movie in (dynamic)ViewData["PopularMovies"])
-        {
-            <div class="col-md-4 col-lg-2 mb-3">
-                <div class="card h-100">
-                    <img src="@movie.CoverImageUrl" class="card-img-top" alt="@movie.Title" style="height: 150px; object-fit: cover;">
-                    <div class="card-body p-2">
-                        <h6 class="card-title">@movie.Title</h6>
-                        <small class="text-muted">@movie.Year, @movie.Genre</small>
-                        <div>
-                            <span class="badge bg-warning text-dark">
-                                @movie.Rating.ToString("0.0")
-                            </span>
-                            @if (movie.IsAvailable)
-                            {
-                                <span class="badge bg-success">Доступен</span>
-                            }
-                        </div>
-                        <a href="@Url.Action("Details", "Catalog", new { id = movie.MovieId })"
-                           class="btn btn-sm btn-outline-primary mt-2 w-100">
-                            Подробнее
-                        </a>
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
-
-    <!-- Как это работает -->
-    <div class="row mb-5">
-        <div class="col-12">
-            <h2 class="border-bottom pb-2">
-                <i class="bi bi-question-circle"></i> Как арендовать фильм?
-            </h2>
-        </div>
-        <div class="col-md-3 text-center mb-3">
-            <div class="p-3 border rounded">
-                <div class="mb-3">
-                    <span class="display-4">1</span>
-                </div>
-                <h5>Выберите фильм</h5>
-                <p>Найдите фильм в нашем каталоге и добавьте его в корзину</p>
-            </div>
-        </div>
-        <div class="col-md-3 text-center mb-3">
-            <div class="p-3 border rounded">
-                <div class="mb-3">
-                    <span class="display-4">2</span>
-                </div>
-                <h5>Оформите заказ</h5>
-                <p>Выберите срок аренды и подтвердите заказ онлайн</p>
-            </div>
-        </div>
-        <div class="col-md-3 text-center mb-3">
-            <div class="p-3 border rounded">
-                <div class="mb-3">
-                    <span class="display-4">3</span>
-                </div>
-                <h5>Заберите в офисе</h5>
-                <p>Приходите в наш офис и забирайте ваш фильм</p>
-            </div>
-        </div>
-        <div class="col-md-3 text-center mb-3">
-            <div class="p-3 border rounded">
-                <div class="mb-3">
-                    <span class="display-4">4</span>
-                </div>
-                <h5>Верните вовремя</h5>
-                <p>Верните фильм в указанный срок, чтобы избежать штрафа</p>
+        <div class="col-md-8">
+            <h3>Статус системы:</h3>
+            <div class="alert alert-success">
+                <h4 class="alert-heading">Система работает нормально</h4>
+                <p>База данных подключена и заполнена тестовыми данными.</p>
+                <hr>
+                <p class="mb-0">
+                    Вы можете начать работу с каталогом фильмов или посмотреть API документацию.
+                </p>
             </div>
         </div>
     </div>
