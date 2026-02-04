@@ -1,2 +1,8 @@
-wwwroot\_css\site.css
-wwwroot\_images\Pulp_Fiction.htm
+wwwroot\css\site.css
+wwwroot\images\default-movie.jpg
+wwwroot\images\movie1.jpg
+wwwroot\images\movie2.jpg
+wwwroot\images\movie3.jpg
+wwwroot\images\movie4.jpg
+wwwroot\images\movie5.jpg
+wwwroot\images\movie6.jpg

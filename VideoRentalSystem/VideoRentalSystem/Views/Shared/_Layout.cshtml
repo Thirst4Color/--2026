@@ -53,12 +53,16 @@
                     </li>
                 </ul>
 
-                <!-- Поиск в навбаре -->
-                <form class="d-flex me-2" action="@Url.Action("Index", "Catalog")" method="get">
-                    <input class="form-control me-2" type="search" id="searchInput"
-                           placeholder="Поиск фильмов..." aria-label="Search" name="search">
+
+                <!-- searchbar-->
+                <form class="d-flex me-2" method="get" action="/Catalog">
+                    <input class="form-control me-2" type="search"
+                           placeholder="Поиск фильмов..."
+                           name="search">
                     <button class="btn btn-outline-light" type="submit">Найти</button>
                 </form>
+
+
 
                 <!-- Кнопки входа/регистрации -->
                 <div class="navbar-nav">
