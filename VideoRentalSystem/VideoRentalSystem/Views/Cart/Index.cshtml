@@ -1,0 +1,70 @@
+﻿@model VideoRentalSystem.Models.Cart
+
+@{
+    ViewData["Title"] = "Корзина";
+}
+
+<div class="container mt-4">
+    <h1>Корзина</h1>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+
+    @if (!Model.Items.Any())
+    {
+        <div class="alert alert-info">
+            <p>Корзина пуста</p>
+            <a href="/Catalog" class="btn btn-primary">В каталог</a>
+        </div>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Фильм</th>
+                    <th>Цена/день</th>
+                    <th>Дней</th>
+                    <th>Итого</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>@item.MediaItem.Movie.Title</td>
+                        <td>@item.MediaItem.MediaType.DailyRentalPrice ₽</td>
+                        <td>@item.RentalDays</td>
+                        <td>@(item.MediaItem.MediaType.DailyRentalPrice* item.RentalDays) ₽</td>
+                        <td>
+                            <form method="post" action="/Cart/RemoveFromCart">
+                                <input type="hidden" name="id" value="@item.ShoppingCartItemId" />
+                                <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="row">
+            <div class="col-md-6">
+                <form method="post" action="/Cart/ClearCart">
+                    <button type="submit" class="btn btn-secondary">Очистить корзину</button>
+                </form>
+            </div>
+            <div class="col-md-6 text-end">
+                <h4>Итого: @Model.TotalPrice ₽</h4>
+                <a href="/Cart/Checkout" class="btn btn-success btn-lg">Оформить заказ</a>
+            </div>
+        </div>
+    }
+</div>

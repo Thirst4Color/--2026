@@ -1,0 +1,15 @@
+﻿@model int
+
+@if (Model > 0)
+{
+    <a href="@Url.Action("Index", "Cart")" class="nav-link">
+        <i class="bi bi-cart"></i> Корзина
+        <span class="badge bg-danger">@Model</span>
+    </a>
+}
+else
+{
+    <a href="@Url.Action("Index", "Cart")" class="nav-link">
+        <i class="bi bi-cart"></i> Корзина
+    </a>
+}

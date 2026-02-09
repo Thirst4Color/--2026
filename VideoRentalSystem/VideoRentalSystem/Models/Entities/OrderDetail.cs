@@ -7,11 +7,15 @@
         public int MediaItemId { get; set; }
         public int RentalDays { get; set; }
         public decimal DailyPrice { get; set; }
-        public decimal Subtotal { get; set; }
+        public decimal Subtotal { get; set; }  // Исправлено: Subtotal, а не TotalPrice
         public decimal LateFee { get; set; }
-        public string Status { get; set; }
+        public string Status { get; set; } = "Active";
 
-        public Order Order { get; set; }
-        public MediaItem MediaItem { get; set; }
+        // Навигационные свойства
+        public Order Order { get; set; } = null!;
+        public MediaItem MediaItem { get; set; } = null!;
+
+        // Вычисляемое свойство для обратной совместимости
+        public decimal TotalPrice => Subtotal;
     }
 }

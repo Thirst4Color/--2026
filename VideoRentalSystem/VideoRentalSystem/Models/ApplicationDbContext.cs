@@ -20,6 +20,7 @@ namespace VideoRentalSystem.Models
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Wishlist> Wishlists { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; } // Добавили
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,6 +28,15 @@ namespace VideoRentalSystem.Models
             modelBuilder.Entity<Wishlist>()
                 .HasIndex(w => new { w.CustomerId, w.MovieId })
                 .IsUnique();
+
+            // Конфигурация для ShoppingCartItem
+            modelBuilder.Entity<ShoppingCartItem>()
+                .HasIndex(s => s.SessionId);
+
+            // Конфигурация для Order
+            modelBuilder.Entity<Order>()
+                .Property(o => o.Status)
+                .HasConversion<string>();
         }
     }
 }

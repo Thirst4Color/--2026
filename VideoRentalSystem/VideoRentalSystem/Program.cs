@@ -1,43 +1,32 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
 using VideoRentalSystem.Models;
 using VideoRentalSystem.Models.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ВАЖНО: Устанавливаем кодировку для консоли
+// Установка кодировки
 Console.OutputEncoding = System.Text.Encoding.UTF8;
-Console.InputEncoding = System.Text.Encoding.UTF8;
 
-// Add services to the container.
+// Добавляем сервисы
 builder.Services.AddControllersWithViews();
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
-// Добавляем поддержку System.Web для UrlDecode
-builder.Services.AddHttpContextAccessor();
+// Сессии
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
-// Подключение базы данных
+// База данных
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Video Rental API v1");
-        c.RoutePrefix = "api-docs";
-    });
-
-    app.UseDeveloperExceptionPage();
-}
-else
+// Конфигурация
+if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
@@ -48,92 +37,46 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
 
-// Middleware для отладки запросов
-app.Use(async (context, next) =>
-{
-    Console.WriteLine($"\n=== ВХОДЯЩИЙ ЗАПРОС ===");
-    Console.WriteLine($"Метод: {context.Request.Method}");
-    Console.WriteLine($"Путь: {context.Request.Path}");
-    Console.WriteLine($"QueryString: {context.Request.QueryString}");
+// Сессии
+app.UseSession();
 
-    // Логируем все параметры
-    if (context.Request.Query.Any())
-    {
-        Console.WriteLine($"Параметры Query:");
-        foreach (var key in context.Request.Query.Keys)
-        {
-            var value = context.Request.Query[key];
-            try
-            {
-                var decodedValue = System.Web.HttpUtility.UrlDecode(value, System.Text.Encoding.UTF8);
-                Console.WriteLine($"  {key}: '{value}' -> декодированное: '{decodedValue}'");
-            }
-            catch
-            {
-                Console.WriteLine($"  {key}: '{value}'");
-            }
-        }
-    }
-
-    await next();
-
-    Console.WriteLine($"=== КОНЕЦ ЗАПРОСА ===\n");
-});
-
-// Маршрутизация
+// Маршруты
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Catalog}/{action=Index}/{id?}");
 
-app.MapControllers();
-
-// Инициализация базы
+// Инициализация БД
 try
 {
     using (var scope = app.Services.CreateScope())
     {
-        var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-        dbContext.Database.EnsureCreated();
-        SeedData(dbContext);
+        var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        db.Database.EnsureCreated();
+        SeedData(db);
     }
 }
 catch (Exception ex)
 {
-    Console.WriteLine($"Ошибка при инициализации базы: {ex.Message}");
+    Console.WriteLine($"Ошибка инициализации БД: {ex.Message}");
 }
 
 app.Run();
 
-// Метод для заполнения начальными данными
+// Упрощенная SeedData
 static void SeedData(ApplicationDbContext context)
 {
-    // ВАЖНО: Сначала убедимся, что все таблицы созданы
-    Console.WriteLine("Создание таблиц базы данных...");
+    Console.WriteLine("=== НАЧАЛО ЗАПОЛНЕНИЯ БАЗЫ ДАННЫХ ===");
 
     try
     {
-        // Создаем все таблицы, если их нет
+        // Создаем все таблицы
         context.Database.EnsureCreated();
+        Console.WriteLine("✅ Таблицы созданы");
 
-        // Ждем немного
-        System.Threading.Thread.Sleep(1000);
-
-        Console.WriteLine("Таблицы созданы успешно");
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Ошибка при создании таблиц: {ex.Message}");
-        return;
-    }
-
-    // Проверяем, есть ли уже данные
-    if (!context.MediaTypes.Any())
-    {
-        Console.WriteLine("Заполнение базы данных начальными данными...");
-
-        try
+        // 1. ТИПЫ НОСИТЕЛЕЙ
+        if (!context.MediaTypes.Any())
         {
-            // Добавляем типы носителей
+            Console.WriteLine("Добавляем типы носителей...");
             var mediaTypes = new List<MediaType>
             {
                 new MediaType { Name = "VHS", DailyRentalPrice = 1.50m },
@@ -143,9 +86,17 @@ static void SeedData(ApplicationDbContext context)
             };
             context.MediaTypes.AddRange(mediaTypes);
             context.SaveChanges();
-            Console.WriteLine("Добавлены типы носителей.");
+            Console.WriteLine($"✅ Добавлено {mediaTypes.Count} типов носителей");
+        }
+        else
+        {
+            Console.WriteLine("Типы носителей уже существуют");
+        }
 
-            // Добавляем поставщиков
+        // 2. ПОСТАВЩИКИ
+        if (!context.Suppliers.Any())
+        {
+            Console.WriteLine("Добавляем поставщиков...");
             var suppliers = new List<Supplier>
             {
                 new Supplier
@@ -167,9 +118,13 @@ static void SeedData(ApplicationDbContext context)
             };
             context.Suppliers.AddRange(suppliers);
             context.SaveChanges();
-            Console.WriteLine("Добавлены поставщики.");
+            Console.WriteLine($"✅ Добавлено {suppliers.Count} поставщиков");
+        }
 
-            // Добавляем несколько фильмов
+        // 3. ФИЛЬМЫ
+        if (!context.Movies.Any())
+        {
+            Console.WriteLine("Добавляем фильмы...");
             var movies = new List<Movie>
             {
                 new Movie
@@ -241,145 +196,120 @@ static void SeedData(ApplicationDbContext context)
             };
             context.Movies.AddRange(movies);
             context.SaveChanges();
-            Console.WriteLine($"Добавлены фильмы.");
+            Console.WriteLine($"✅ Добавлено {movies.Count} фильмов");
+        }
 
-            // Теперь добавляем медиа-носители для фильмов
-            var mediaItems = new List<MediaItem>
+        // 4. МЕДИА-НОСИТЕЛИ
+        if (!context.MediaItems.Any() && context.Movies.Any() && context.MediaTypes.Any() && context.Suppliers.Any())
+        {
+            Console.WriteLine("Добавляем медиа-носители...");
+
+            // Получаем ID для связей
+            var vhs = context.MediaTypes.First(mt => mt.Name == "VHS");
+            var dvd = context.MediaTypes.First(mt => mt.Name == "DVD");
+            var bluray = context.MediaTypes.First(mt => mt.Name == "Blu-Ray");
+            var supplier1 = context.Suppliers.First();
+            var supplier2 = context.Suppliers.Skip(1).First();
+
+            var movies = context.Movies.ToList();
+
+            var mediaItems = new List<MediaItem>();
+
+            // Крестный отец
+            var godfather = movies.First(m => m.Title.Contains("Крестный"));
+            mediaItems.Add(new MediaItem
             {
-                // Крестный отец
-                new MediaItem
-                {
-                    MovieId = 1,
-                    MediaTypeId = 2, // DVD
-                    SupplierId = 1,
-                    Barcode = "DVD001",
-                    PurchaseDate = DateTime.Now.AddMonths(-6),
-                    PurchasePrice = 15.99m,
-                    IsAvailable = true,
-                    Condition = "Good"
-                },
-                new MediaItem
-                {
-                    MovieId = 1,
-                    MediaTypeId = 3, // Blu-Ray
-                    SupplierId = 1,
-                    Barcode = "BR001",
-                    PurchaseDate = DateTime.Now.AddMonths(-3),
-                    PurchasePrice = 25.99m,
-                    IsAvailable = true,
-                    Condition = "Excellent"
-                },
-                // Побег из Шоушенка
-                new MediaItem
-                {
-                    MovieId = 2,
-                    MediaTypeId = 2, // DVD
-                    SupplierId = 2,
-                    Barcode = "DVD002",
-                    PurchaseDate = DateTime.Now.AddMonths(-5),
-                    PurchasePrice = 12.99m,
-                    IsAvailable = true,
-                    Condition = "Good"
-                },
-                new MediaItem
-                {
-                    MovieId = 2,
-                    MediaTypeId = 1, // VHS
-                    SupplierId = 2,
-                    Barcode = "VHS001",
-                    PurchaseDate = DateTime.Now.AddYears(-1),
-                    PurchasePrice = 8.99m,
-                    IsAvailable = true,
-                    Condition = "Good"
-                },
-                // Зеленая миля
-                new MediaItem
-                {
-                    MovieId = 3,
-                    MediaTypeId = 2, // DVD
-                    SupplierId = 1,
-                    Barcode = "DVD003",
-                    PurchaseDate = DateTime.Now.AddMonths(-4),
-                    PurchasePrice = 14.99m,
-                    IsAvailable = true,
-                    Condition = "Excellent"
-                },
-                // Форрест Гамп
-                new MediaItem
-                {
-                    MovieId = 4,
-                    MediaTypeId = 3, // Blu-Ray
-                    SupplierId = 2,
-                    Barcode = "BR002",
-                    PurchaseDate = DateTime.Now.AddMonths(-2),
-                    PurchasePrice = 22.99m,
-                    IsAvailable = true,
-                    Condition = "Excellent"
-                },
-                new MediaItem
-                {
-                    MovieId = 4,
-                    MediaTypeId = 2, // DVD
-                    SupplierId = 2,
-                    Barcode = "DVD004",
-                    PurchaseDate = DateTime.Now.AddMonths(-3),
-                    PurchasePrice = 16.99m,
-                    IsAvailable = true, // Изменено с false на true
-                    Condition = "Good"
-                },
-                // Назад в будущее
-                new MediaItem
-                {
-                    MovieId = 5,
-                    MediaTypeId = 1, // VHS
-                    SupplierId = 1,
-                    Barcode = "VHS002",
-                    PurchaseDate = DateTime.Now.AddYears(-2),
-                    PurchasePrice = 7.99m,
-                    IsAvailable = true,
-                    Condition = "Fair"
-                },
-                // Матрица
-                new MediaItem
-                {
-                    MovieId = 6,
-                    MediaTypeId = 3, // Blu-Ray
-                    SupplierId = 2,
-                    Barcode = "BR003",
-                    PurchaseDate = DateTime.Now.AddMonths(-1),
-                    PurchasePrice = 24.99m,
-                    IsAvailable = true,
-                    Condition = "Excellent"
-                },
-                new MediaItem
-                {
-                    MovieId = 6,
-                    MediaTypeId = 2, // DVD
-                    SupplierId = 1,
-                    Barcode = "DVD005",
-                    PurchaseDate = DateTime.Now.AddMonths(-2),
-                    PurchasePrice = 17.99m,
-                    IsAvailable = false, // Выдана в прокат
-                    Condition = "Good"
-                }
-            };
+                MovieId = godfather.MovieId,
+                MediaTypeId = dvd.MediaTypeId,
+                SupplierId = supplier1.SupplierId,
+                Barcode = "DVD001",
+                PurchaseDate = DateTime.Now.AddMonths(-6),
+                PurchasePrice = 15.99m,
+                IsAvailable = true,
+                Condition = "Good"
+            });
+
+            mediaItems.Add(new MediaItem
+            {
+                MovieId = godfather.MovieId,
+                MediaTypeId = bluray.MediaTypeId,
+                SupplierId = supplier1.SupplierId,
+                Barcode = "BR001",
+                PurchaseDate = DateTime.Now.AddMonths(-3),
+                PurchasePrice = 25.99m,
+                IsAvailable = true,
+                Condition = "Excellent"
+            });
+
+            // Побег из Шоушенка
+            var shawshank = movies.First(m => m.Title.Contains("Побег"));
+            mediaItems.Add(new MediaItem
+            {
+                MovieId = shawshank.MovieId,
+                MediaTypeId = dvd.MediaTypeId,
+                SupplierId = supplier2.SupplierId,
+                Barcode = "DVD002",
+                PurchaseDate = DateTime.Now.AddMonths(-5),
+                PurchasePrice = 12.99m,
+                IsAvailable = true,
+                Condition = "Good"
+            });
+
+            // Зеленая миля
+            var greenMile = movies.First(m => m.Title.Contains("Зеленая"));
+            mediaItems.Add(new MediaItem
+            {
+                MovieId = greenMile.MovieId,
+                MediaTypeId = dvd.MediaTypeId,
+                SupplierId = supplier1.SupplierId,
+                Barcode = "DVD003",
+                PurchaseDate = DateTime.Now.AddMonths(-4),
+                PurchasePrice = 14.99m,
+                IsAvailable = true,
+                Condition = "Excellent"
+            });
+
+            // Форрест Гамп
+            var forrest = movies.First(m => m.Title.Contains("Форрест"));
+            mediaItems.Add(new MediaItem
+            {
+                MovieId = forrest.MovieId,
+                MediaTypeId = bluray.MediaTypeId,
+                SupplierId = supplier2.SupplierId,
+                Barcode = "BR002",
+                PurchaseDate = DateTime.Now.AddMonths(-2),
+                PurchasePrice = 22.99m,
+                IsAvailable = true,
+                Condition = "Excellent"
+            });
+
+            // Матрица
+            var matrix = movies.First(m => m.Title.Contains("Матрица"));
+            mediaItems.Add(new MediaItem
+            {
+                MovieId = matrix.MovieId,
+                MediaTypeId = bluray.MediaTypeId,
+                SupplierId = supplier2.SupplierId,
+                Barcode = "BR003",
+                PurchaseDate = DateTime.Now.AddMonths(-1),
+                PurchasePrice = 24.99m,
+                IsAvailable = true,
+                Condition = "Excellent"
+            });
+
             context.MediaItems.AddRange(mediaItems);
             context.SaveChanges();
+            Console.WriteLine($"✅ Добавлено {mediaItems.Count} медиа-носителей");
+        }
 
-            Console.WriteLine($"База данных заполнена начальными данными.");
-            Console.WriteLine($"Добавлено: {mediaTypes.Count} типов носителей");
-            Console.WriteLine($"Добавлено: {suppliers.Count} поставщиков");
-            Console.WriteLine($"Добавлено: {movies.Count} фильмов");
-            Console.WriteLine($"Добавлено: {mediaItems.Count} медиа-носителей");
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Ошибка при заполнении данных: {ex.Message}");
-            Console.WriteLine($"Stack trace: {ex.StackTrace}");
-        }
+        Console.WriteLine("=== БАЗА ДАННЫХ ГОТОВА ===");
+        Console.WriteLine($"Фильмы: {context.Movies.Count()}");
+        Console.WriteLine($"Медиа-носители: {context.MediaItems.Count()}");
+        Console.WriteLine($"Доступные носители: {context.MediaItems.Count(mi => mi.IsAvailable)}");
     }
-    else
+    catch (Exception ex)
     {
-        Console.WriteLine("База данных уже содержит данные. Пропускаем заполнение.");
+        Console.WriteLine($"❌ Ошибка при заполнении базы данных: {ex.Message}");
+        Console.WriteLine($"StackTrace: {ex.StackTrace}");
     }
 }

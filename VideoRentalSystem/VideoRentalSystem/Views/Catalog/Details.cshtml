@@ -75,9 +75,20 @@
                                                     Цена: @mediaItem.DailyPrice.ToString("C") / день
                                                 </small>
                                             </p>
-                                            <button class="btn btn-success btn-sm" onclick="addToCart(@mediaItem.MediaItemId, '@mediaItem.Format')">
-                                                <i class="bi bi-cart-plus"></i> Арендовать @mediaItem.Format
-                                            </button>
+                                            <form method="post" action="@Url.Action("AddToCart", "Cart")" class="d-inline">
+                                                <input type="hidden" name="mediaItemId" value="@mediaItem.MediaItemId" />
+                                                <div class="input-group input-group-sm">
+                                                    <select name="rentalDays" class="form-select form-select-sm" style="width: auto;">
+                                                        <option value="1">1 день</option>
+                                                        <option value="3" selected>3 дня</option>
+                                                        <option value="7">7 дней</option>
+                                                        <option value="14">14 дней</option>
+                                                    </select>
+                                                    <button type="submit" class="btn btn-success btn-sm">
+                                                        <i class="bi bi-cart-plus"></i> В корзину
+                                                    </button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -123,6 +134,7 @@
                                     <th>Состояние</th>
                                     <th>Статус</th>
                                     <th>Цена проката</th>
+                                    <th>Действия</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -146,6 +158,28 @@
                                             }
                                         </td>
                                         <td>@mediaItem.DailyPrice.ToString("C") / день</td>
+                                        <td>
+                                            @if (mediaItem.IsAvailable)
+                                            {
+                                                <form method="post" action="@Url.Action("AddToCart", "Cart")" class="d-inline">
+                                                    <input type="hidden" name="mediaItemId" value="@mediaItem.MediaItemId" />
+                                                    <div class="input-group input-group-sm" style="width: 150px;">
+                                                        <select name="rentalDays" class="form-select form-select-sm">
+                                                            <option value="1">1 д.</option>
+                                                            <option value="3" selected>3 д.</option>
+                                                            <option value="7">7 д.</option>
+                                                        </select>
+                                                        <button type="submit" class="btn btn-success btn-sm">
+                                                            <i class="bi bi-cart-plus"></i>
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-muted">Недоступно</span>
+                                            }
+                                        </td>
                                     </tr>
                                 }
                             </tbody>
@@ -163,55 +197,60 @@
     </div>
 </div>
 
-@section Scripts {
-    <script>
-        function addToCart(mediaItemId, format) {
-            if (confirm(`Добавить ${format} версию в корзину?`)) {
-                fetch('@Url.Action("AddToCart", "Cart")', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        mediaItemId: mediaItemId,
-                        rentalDays: 3 // По умолчанию 3 дня
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert('Фильм добавлен в корзину!');
-                        window.location.href = '@Url.Action("Index", "Cart")';
-                    } else {
-                        alert('Ошибка: ' + data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Произошла ошибка при добавлении в корзину');
-                });
-            }
+
+<style>
+    /* Стили для кнопок в деталях фильма */
+    .media-item-card .input-group {
+        max-width: 250px;
+    }
+
+    /* Стили для таблицы копий */
+    .table-actions form {
+        min-width: 150px;
+    }
+
+    .table-actions .input-group-sm {
+        height: 31px;
+    }
+
+    /* Адаптивность для карточек форматов */
+    @@media (max-width: 576px) {
+        .media-item-card .card-body {
+            padding: 10px;
         }
 
-        function addToWishlist(movieId) {
-            if (confirm('Хотите получать уведомления, когда этот фильм станет доступен?')) {
-                fetch('@Url.Action("AddToWishlist", "Wishlist")', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ movieId: movieId })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert('Вы будете уведомлены о появлении фильма!');
-                    } else {
-                        alert('Ошибка: ' + data.message);
-                    }
-                });
-            }
+        .media-item-card .btn {
+            font-size: 0.875rem;
+            padding: 0.25rem 0.5rem;
         }
+
+        .table-actions form {
+            min-width: 120px;
+        }
+    }
+
+    /* Стили для индикаторов состояния */
+    .badge.bg-success {
+        background-color: #198754 !important;
+    }
+
+    .badge.bg-info {
+        background-color: #0dcaf0 !important;
+    }
+
+    .badge.bg-warning {
+        background-color: #ffc107 !important;
+        color: #000;
+    }
+
+    .badge.bg-danger {
+        background-color: #dc3545 !important;
+    }
+</style>
+
+@section Scripts {
+    <script>
+      
     </script>
 }
 

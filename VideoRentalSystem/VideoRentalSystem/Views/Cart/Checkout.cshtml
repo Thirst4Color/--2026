@@ -1,0 +1,51 @@
+﻿@model VideoRentalSystem.Models.Cart
+
+@{
+    ViewData["Title"] = "Оформление заказа";
+}
+
+<div class="container mt-4">
+    <h1>Оформление заказа</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Ваши данные</h4>
+            <form method="post" action="/Cart/CreateOrder">
+                <div class="mb-3">
+                    <label class="form-label">Имя</label>
+                    <input type="text" name="firstName" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Фамилия</label>
+                    <input type="text" name="lastName" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Телефон</label>
+                    <input type="tel" name="phone" class="form-control" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" required />
+                </div>
+                <button type="submit" class="btn btn-success btn-lg">Подтвердить заказ</button>
+            </form>
+        </div>
+
+        <div class="col-md-6">
+            <h4>Ваш заказ</h4>
+            <ul class="list-group">
+                @foreach (var item in Model.Items)
+                {
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>@item.MediaItem.Movie.Title</span>
+                        <span>@(item.MediaItem.MediaType.DailyRentalPrice* item.RentalDays) ₽</span>
+                    </li>
+                }
+                <li class="list-group-item d-flex justify-content-between fw-bold">
+                    <span>Итого:</span>
+                    <span>@Model.TotalPrice ₽</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
